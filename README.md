@@ -1,6 +1,6 @@
 # Text_mining_project
 
-Summary
+## Summary
 
 
 This study will examine different strategies that may improve the NPS comment filters and performance within X company. For this, different text mining techniques will be used, such as language identification, stemming, tokenization, data cleaning and the merging of two different csvs in order to find different keywords from one into the other. The study will use  NER and NEL. 
