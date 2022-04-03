@@ -18,6 +18,10 @@ In order to do so there will be used the following techniques: NER (Named entity
 
 ### pandas
 
+Pandas is a Python library. Pandas is used to analyze data.
+
+### Usage ###
+
 ```` 
 #read csv file
 
@@ -39,6 +43,10 @@ dictionary = [item.lower() for item in dictionary]
 dictionary
 ```` 
 ### numpy
+
+NumPy is a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.
+
+### Usage ###
 ```` 
 #Remove stop words and special characters
 
@@ -50,6 +58,10 @@ csv
 ```` 
 
 ### deep_translator 
+
+A flexible tool to translate between different languages in a simple way using multiple translators.
+
+### Usage ###
 ```` 
 #Translation
 
@@ -66,6 +78,10 @@ csv_2 = csv
 ```` 
 
 ### nltk 
+
+The Natural Language Toolkit (NLTK) is a Python package for natural language processing. 
+
+### Usage ###
 
 ```` 
 #Remove stop words and special characters
@@ -86,6 +102,10 @@ csv["Improvement comment"] = csv["Improvement comment"].apply(word_tokenize)
 ```` 
 
 ### trrex
+
+Is a package that contains a function for efficiently representing a set of keywords as regex. Regex can be used to replace keywords in sentences or extract keywords from sentences
+
+### Usage ###
 
 ```` 
 #Comment column and dictionary comparison
