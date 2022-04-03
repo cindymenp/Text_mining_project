@@ -18,9 +18,9 @@ In order to do so there will be used the following techniques: NER (Named entity
 
 ### pandas
 
+```` 
 #read csv file
 
-```` 
 csv = pd.read_csv ('/Users/cindy/Documents/Text mining project/csv_data.csv', encoding="utf8", on_bad_lines='skip', delimiter = ';')
 csv
 
