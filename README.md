@@ -16,6 +16,84 @@ In order to do so there will be used the following techniques: NER (Named entity
 
 ## Intructions
 
+### pandas
+
+#read csv file
+
+```` 
+csv = pd.read_csv ('/Users/cindy/Documents/Text mining project/csv_data.csv', encoding="utf8", on_bad_lines='skip', delimiter = ';')
+csv
+
+#expand lenght in the future from3 to 4+ comment_filter
+```` 
+```` 
+#dictionary of keywords: from dataframe to list 
+
+dictionary = pd.read_csv ('/Users/cindy/Documents/Text mining project/NPS_NLP categories.csv', on_bad_lines='skip', delimiter = ',')
+dictionary = dictionary.fillna(method='ffill')
+dictionary = dictionary.values.tolist()
+dictionary  = [val for sublist in dictionary for val in sublist]
+dictionary = [item.lower() for item in dictionary]
+#dictionary = str(dictionary)
+
+dictionary
+```` 
+### numpy
+```` 
+#Remove stop words and special characters
+
+stop = stopwords.words('english')
+csv["Improvement comment"] = csv["Improvement comment"].apply(lambda x: " ".join(x.lower() for x in str(x).split() if x not in stop))
+csv["Improvement comment"] = csv["Improvement comment"].fillna('').astype(str).str.replace(r'[^A-Za-z ]', '', regex=True).replace('', np.nan, regex=False)
+
+csv
+```` 
+
+### deep_translator 
+```` 
+#Translation
+
+translated = []
+for row in csv["Improvement comment"]:
+    try:
+        translated.append(GoogleTranslator(source='auto', target='en').translate(row))
+    except:
+        translated.append('')
+        
+csv["Improvement comment"]=translated
+
+csv_2 = csv
+```` 
+
+### nltk 
+
+```` 
+#Remove stop words and special characters
+
+stop = stopwords.words('english')
+csv["Improvement comment"] = csv["Improvement comment"].apply(lambda x: " ".join(x.lower() for x in str(x).split() if x not in stop))
+csv["Improvement comment"] = csv["Improvement comment"].fillna('').astype(str).str.replace(r'[^A-Za-z ]', '', regex=True).replace('', np.nan, regex=False)
+
+csv
+```` 
+```` 
+#Tokenize comment
+
+csv["Improvement comment"] = csv["Improvement comment"].apply(word_tokenize)
+
+#csv["Improvement comment"] = csv.apply(lambda row:word_tokenize(csv["Improvement comment"]),axis=1)
+
+```` 
+
+### trrex
+
+```` 
+#Comment column and dictionary comparison
+
+query = tx.make(dictionary, r"\b(", r")\b")
+
+csv["Word"] = csv["Improvement comment"].str.findall(r'{}'.format(query))
+```` 
 
 ## Instructions
 
@@ -38,27 +116,6 @@ Python 2: pip install deep-translator //Python 3: pip3 install deep-translator
 Jupyter Lab:
 
 Python 2: %pip install deep-translator //Python 3: %pip3 install deep-translator
-
-
-google_trans_new 
-
-Terminal:
-
-Python 2: pip install google_trans_new  //Python 3: pip3 install google_trans_new 
-
-Jupyter Lab:
-
-Python 2: %pip install google_trans_new  //Python 3: %pip3 install google_trans_new 
-
-google-cloud-translate==2.0.1
-
-Terminal:
-
-Python 2: pip install google-cloud-translate==2.0.1 //Python 3 : pip3 install google-cloud-translate==2.0.1
-
-Jupyter Lab:
-
-Python 2: %pip install google-cloud-translate==2.0.1 //Python 3 : %pip3 install google-cloud-translate==2.0.1
 
 trrex
 
